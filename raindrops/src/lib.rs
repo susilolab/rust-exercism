@@ -1,19 +1,19 @@
-const PLING: &'static str = "Pling";
-const PLANG: &'static str = "Plang";
-const PLONG: &'static str = "Plong";
+const PLING: &str = "Pling";
+const PLANG: &str = "Plang";
+const PLONG: &str = "Plong";
 
 pub fn raindrops(n: u32) -> String {
     let mut res = String::new();
     if n % 3 == 0 {
-        res += PLING;
+        res.push_str(PLING);
     }
 
     if n % 5 == 0 {
-        res += PLANG;
+        res.push_str(PLANG);
     }
 
     if n % 7 == 0 {
-        res += PLONG;
+        res.push_str(PLONG);
     }
 
     if res.is_empty() {

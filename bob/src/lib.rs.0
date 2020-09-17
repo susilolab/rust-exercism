@@ -11,6 +11,17 @@ pub fn reply(message: &str) -> &str {
         (false, false, false, false) => "Whatever.",
         _ => "Sure.",
     }
+    // if is_silence(msg) {
+    //     "Fine. Be that way!"
+    // } else if is_question(msg) {
+    //     "Sure."
+    // } else if is_shouting(msg) {
+    //     "Whoa, chill out!"
+    // } else if not_shouting(msg) {
+    //     "Calm down, I know what I'm doing!"
+    // } else {
+    //     "Whatever."
+    // }
 }
 
 fn is_silence(msg: &str) -> bool {
@@ -23,28 +34,11 @@ fn is_shouting(msg: &str) -> bool {
 }
 
 fn is_question(msg: &str) -> bool {
-    msg.ends_with("?") && !is_all_uppercase(msg)
-    // let re = Regex::new(r"[A-Z]{3}+\?").unwrap();
-    // msg.ends_with('?') && !re.is_match(msg)
-
-    // "aasdadas".matches(std::char::char::)
+    let re = Regex::new(r"[A-Z]{3}+\?").unwrap();
+    msg.ends_with('?') && !re.is_match(msg)
 }
 
 fn not_shouting(msg: &str) -> bool {
     let re = Regex::new(r"[A-Z]\?").unwrap();
     re.is_match(msg)
-}
-
-fn is_all_uppercase(word: &str) -> bool {
-	let mut res = true;
-
-	for w in word.chars() {
-		if w.is_alphabetic() && w.is_uppercase() {
-			res = res && true;
-		} else if w.is_alphabetic() && !w.is_uppercase() {
-			res = res && false;
-		}
-	}
-
-	res
 }

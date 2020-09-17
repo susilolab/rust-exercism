@@ -1,0 +1,16 @@
+pub fn reply(message: &str) -> &str {
+  let trimmed = message.trim();
+  let silence = trimmed.is_empty();
+  let question = trimmed.ends_with("?");
+  let has_upper = trimmed.chars().any(|c| c.is_uppercase() );
+  let has_lower = trimmed.chars().any(|c| c.is_lowercase() );
+  let yell = has_upper && !has_lower;
+
+  match (question, yell, silence) {
+    (true, false, _) => "Sure.",
+    (false, true, _) => "Whoa, chill out!",
+    (true, true, _) => "Calm down, I know what I'm doing!",
+    (_, _, true) => "Fine. Be that way!",
+    _ => "Whatever."
+  }
+}
